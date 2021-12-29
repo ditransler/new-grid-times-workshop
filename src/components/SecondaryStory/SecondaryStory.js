@@ -1,16 +1,18 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-const SecondaryStory = ({ id, title, image, location, abstract }) => {
-  return (
-    <a href={`/story/${id}`}>
-      <Wrapper>
-        <Image alt={image.alt} src={image.src} />
-        <Heading>{title}</Heading>
-        <Abstract>{abstract}</Abstract>
-      </Wrapper>
-    </a>
-  );
+const SecondaryStory = ({ id, title, image, abstract }) => {
+    return (
+        <a href={`/story/${id}`}>
+            <Wrapper>
+                <Image alt={image.alt} src={image.src} />
+                <Heading>{title}</Heading>
+                <AbstractWrapper>
+                    <Abstract>{abstract}</Abstract>
+                </AbstractWrapper>
+            </Wrapper>
+        </a>
+    );
 };
 
 const Wrapper = styled.article`
@@ -41,10 +43,18 @@ const Heading = styled.h2`
   margin-top: -2px;
 `;
 
-const Abstract = styled.p`
+const AbstractWrapper = styled.div`
   grid-area: abstract;
+`;
+
+const Abstract = styled.p`
   font-size: 1rem;
   white-space: pre-wrap;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  /* Necessary for line-clamping */
+  overflow: hidden;
 `;
 
 export default SecondaryStory;
